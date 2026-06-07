@@ -1,0 +1,6 @@
+{
+  "name": "Computer Repair Service Tracking & Management System (CRSTMS)",
+  "description": "Real production Computer Repair Service Tracking & Management System (CRSTMS). Login and manage repair tickets, asset logs, customer directories, stock levels, invoicing, dispatch, and support desks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

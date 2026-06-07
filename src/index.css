@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, monospace;
+}
+
+/* Base Light Mode variables (Day Mode) - Now the default theme */
+:root {
+  --bg-dark-screen: #f4f6f9;  /* Screen/Page body background */
+  --bg-slate-900: #ffffff;    /* Surface card / container box background */
+  --bg-slate-950: #f8fafc;    /* Nested containers, inside inputs background */
+  --bg-slate-955: #f1f5f9;    /* Alternative dark grey/light grey background */
+  --border-slate-800: #e2e8f0; /* Default outline border line */
+  --border-slate-850: #cbd5e1; /* Subtle divider border layout line */
+  --text-white: #0f172a;       /* Display headers contrast */
+  --text-slate-200: #1e293b;   /* Dynamic active texts */
+  --text-slate-300: #334155;   /* Normal reading paragraphs body description */
+  --text-slate-400: #475569;   /* Sub-text descriptors labels */
+  --text-slate-455: #475569;   
+  --text-slate-450: #475569;   
+  --text-slate-500: #64748b;   /* Inactive metadata placeholder text details */
+  --text-slate-650: #475569;   /* Custom state notes metadata */
+  --bg-slate-850-hover: #f1f5f9; /* Active sidebar lists item hover status highlight shadow trigger */
+}
+
+/* Night Mode variables (Dark Mode) - Triggered when .dark variant is applied */
+.dark {
+  --bg-dark-screen: #0d1017;
+  --bg-slate-900: #0f172a;
+  --bg-slate-950: #020617;
+  --bg-slate-955: #090d16;
+  --border-slate-800: #1e293b;
+  --border-slate-850: #334155;
+  --text-white: #ffffff;
+  --text-slate-200: #cbd5e1;
+  --text-slate-300: #94a3b8;
+  --text-slate-400: #64748b;
+  --text-slate-455: #94a3b8;
+  --text-slate-450: #94a3b8;
+  --text-slate-500: #4b5563;
+  --text-slate-650: #374151;
+  --bg-slate-850-hover: #1e293b;
+}
+
+/* Global resets and component overrides applying design variables instantly */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark-screen) !important;
+  color: var(--text-slate-300) !important;
+}
+
+/* Complete layout background overrides matching custom styled sections */
+.bg-slate-900 {
+  background-color: var(--bg-slate-900) !important;
+}
+.bg-slate-950, .bg-slate-950\/45, .bg-slate-950\/20, .bg-slate-950\/25 {
+  background-color: var(--bg-slate-950) !important;
+}
+.bg-slate-955 {
+  background-color: var(--bg-slate-955) !important;
+}
+.bg-\[\#0d1017\] {
+  background-color: var(--bg-dark-screen) !important;
+}
+.bg-\[\#0d1117\] {
+  background-color: var(--bg-dark-screen) !important;
+}
+.bg-\[\#0c0f16\] {
+  background-color: var(--bg-slate-950) !important;
+}
+.bg-\[\#141822\] {
+  background-color: var(--bg-slate-900) !important;
+}
+.bg-\[\#0e131d\] {
+  background-color: var(--bg-slate-950) !important;
+}
+
+/* Borders outline overrides */
+.border-slate-800, .border-slate-800\/80 {
+  border-color: var(--border-slate-800) !important;
+}
+.border-slate-850 {
+  border-color: var(--border-slate-850) !important;
+}
+.divide-slate-850 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--border-slate-850) !important;
+}
+
+/* Responsive sidebars high-contrast shadow adjustments for Light Mode */
+:root:not(.dark) .shadow-2xl, :root:not(.dark) .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.04), 0 4px 6px -4px rgb(0 0 0 / 0.04) !important;
+}
+
+/* Form and input field dynamic selectors */
+input, textarea, select {
+  background-color: var(--bg-slate-950) !important;
+  color: var(--text-white) !important;
+  border-color: var(--border-slate-850) !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #f59e0b !important; /* amber accent */
+}
+input::placeholder, textarea::placeholder {
+  color: var(--text-slate-500) !important;
+}
+
+/* Standard typographic color maps */
+.text-white {
+  color: var(--text-white) !important;
+}
+.text-slate-200 {
+  color: var(--text-slate-200) !important;
+}
+.text-slate-350 {
+  color: var(--text-slate-350) !important;
+}
+.text-slate-300 {
+  color: var(--text-slate-300) !important;
+}
+.text-slate-400 {
+  color: var(--text-slate-400) !important;
+}
+.text-slate-450 {
+  color: var(--text-slate-450) !important;
+}
+.text-slate-455 {
+  color: var(--text-slate-455) !important;
+}
+.text-slate-500 {
+  color: var(--text-slate-500) !important;
+}
+.text-slate-650 {
+  color: var(--text-slate-650) !important;
+}
+
+/* Ensure active statuses, active sidebar states with specific text colors stay white */
+.text-slate-950 {
+  color: #020617 !important;
+}
+
+/* Standard hover classes in list groups */
+.hover\:bg-slate-850\/80:hover {
+  background-color: var(--bg-slate-850-hover) !important;
+}

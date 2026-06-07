@@ -1,0 +1,119 @@
+========================================================================
+            CRSTMS DEPLOYMENT & INSTALLATION GUIDE
+========================================================================
+
+Welcome to the installation and layout configuration guide for CRSTMS.
+This step-by-step document is written simply to help university evaluators,
+lecturers, and system administrators install and run the application
+on local development setups or server environments.
+
+------------------------------------------------------------------------
+1. SYSTEM REQUIREMENTS
+------------------------------------------------------------------------
+Before beginning installation, ensure your environment meets these conditions:
+* Operating System: Windows 10/11, macOS, or Linux
+* Web Server: Apache (or Nginx) — we recommend Apache via XAMPP for ease
+* Database Engine: MySQL (v5.7 or v8.0+) / MariaDB
+* Programming Language: PHP (v8.0 or higher) with PDO and MySQL modules enabled
+* Frontend Preview Client: Modern web browser (Chrome, Edge, Firefox, or Safari)
+
+------------------------------------------------------------------------
+2. DOWNLOAD AND EXTRACT PROJECT
+------------------------------------------------------------------------
+1. Download the CRSTMS project ZIP archive or clone the git repository.
+2. Extract the directory contents directly into your server's root directory:
+   * On Windows XAMPP: C:\xampp\htdocs\crstms\
+   * On Linux/Ubuntu: /var/www/html/crstms/
+   * On macOS MAMP: /Applications/MAMP/htdocs/crstms/
+
+------------------------------------------------------------------------
+3. CONFIGURE DATABASE
+------------------------------------------------------------------------
+1. Start your local Apache and MySQL service engines (e.g., click "Start"
+   on both inside your XAMPP Control Panel).
+2. Open your web browser and navigate to the database manager tool:
+   * URL: http://localhost/phpmyadmin/
+3. Click "New" on the left sidebar to create a new database.
+4. Set Database Name to: crstms_db
+5. Set Collation to: utf8mb4_unicode_ci
+6. Click "Create".
+
+------------------------------------------------------------------------
+4. IMPORT SQL SCHEMA
+------------------------------------------------------------------------
+1. With your newly created database "crstms_db" selected in phpMyAdmin,
+   click on the "Import" tab on the top horizontal menu.
+2. Click "Choose File" and select the SQL schema script file located inside:
+   * Path: backend/database/schema.sql (or use the commands in DATABASE_SETUP.txt)
+3. Keep default settings (Format: SQL, Compatibility: None).
+4. Click the "Go" or "Import" button at the bottom.
+5. All tables (users, customers, devices, repair_tickets, inventory, invoices, etc.)
+   will import and seed automatically.
+
+------------------------------------------------------------------------
+5. CONFIGURE ENVIRONMENT
+------------------------------------------------------------------------
+Copy or rename `.env.example` in the project root to `.env` and fill in
+your local database connection parameters:
+
+  DB_HOST=localhost
+  DB_PORT=3306
+  DB_NAME=crstms_db
+  DB_USER=root
+  DB_PASS=                        (Leave blank on XAMPP default config)
+  APP_ENV=local
+  BASE_URL=http://localhost/crstms
+
+------------------------------------------------------------------------
+6. START THE APPLICATION
+------------------------------------------------------------------------
+For Apache Server Environment (Complete PHP Backend Rendering):
+1. Navigate to the base application directory in your web browser:
+   * URL: http://localhost/crstms/index.html
+2. The user interface will load with full database integration.
+
+For Node.js Frontend Development Environment (Vite Compilations):
+If you wish to run the interactive hot-reloading frontend development system:
+1. Open your terminal or command prompt in the project root folder.
+2. Install necessary libraries:
+   * Command: npm install
+3. Start the local server:
+   * Command: npm run dev
+4. Open the development URL:
+   * URL: http://localhost:3000
+
+------------------------------------------------------------------------
+7. LOGIN INSTRUCTIONS
+------------------------------------------------------------------------
+* Once the main page is displayed, you will see a unified Login Screen.
+* Click on the "Staff Sign-in" tab to log in as an Admin, Receptionist,
+  Technician, or Delivery courier.
+* Click on the "Customer Portal" tab to access customer features.
+* Refer directly to the accounts listed in SYSTEM_CREDENTIALS.txt.
+
+------------------------------------------------------------------------
+8. COMMON TROUBLESHOOTING
+------------------------------------------------------------------------
+
+* ERROR: "Database Connection Failed / SQLSTATE[HY000]"
+  * Root Cause: Your PHP configuration is unable to connect to MySQL.
+  * Solutions:
+    - Check if MySQL service is running in your XAMPP Control Panel.
+    - Confirm port (default 3306) and credentials match in your `.env` or
+      config file (sometimes username is "root" with empty password).
+
+* ERROR: "Table 'crstms_db.users' doesn't exist"
+  * Root Cause: SQL tables were not imported or were processed into the
+    wrong database target.
+  * Solution: Select "crstms_db" inside phpMyAdmin and make sure you run
+    the migration query from DATABASE_SETUP.txt.
+
+* ERROR: "Upload limit exceeded / Temporary folder missing"
+  * Root Cause: Restrictive default file upload configurations in php.ini.
+  * Solution: Open php.ini, find `upload_max_filesize` and change it to
+    `upload_max_filesize = 10M` or higher, then restart Apache.
+
+* ERROR: "Port 3000 is already in use" (Vite)
+  * Root Cause: Another development server is running in the background.
+  * Solution: Close other running terminal processes or restart your PC.
+========================================================================
